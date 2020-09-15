@@ -25,21 +25,11 @@ public class login_and_shop {
 	int random_int = login_and_shop.getRandomNumberInts(1, 55555);
 	String username = "test" + random_int;
 	
-	
-	WebDriver driver;
-	
-	@After
-	public void tearDown()
-	{
-		driver.quit();
-	}
-	
-		
 	@Test
 	public void test() {
 		
 	System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver.exe");
-	driver = new FirefoxDriver();
+	WebDriver driver = new FirefoxDriver();
 	
 	//CONFIGURATION D'UN IMPLICIT WAIT
 
@@ -176,5 +166,7 @@ public class login_and_shop {
 	driver.findElement(By.xpath("//input[@name='newAccount']")).click();
 	
 	System.out.println("FINISH");
+	
+	driver.quit();
 	}
 }
