@@ -39,7 +39,7 @@ public class TestSelenium_OK {
 
 		//navigation
 		
-		driver.get("http://localhost:8093/jpetstore");
+		driver.get("https://petstore.octoperf.com");
 		
 		driver.findElement(By.xpath("//a[.='Enter the Store']")).click();
 			
