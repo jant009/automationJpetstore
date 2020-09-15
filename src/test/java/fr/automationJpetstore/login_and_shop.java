@@ -5,12 +5,10 @@ import static org.junit.Assert.*;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class login_and_shop {
@@ -28,7 +26,7 @@ public class login_and_shop {
 	@Test
 	public void test() {
 		
-	System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver.exe");
+	System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
 	WebDriver driver = new FirefoxDriver();
 	
 	//CONFIGURATION D'UN IMPLICIT WAIT
