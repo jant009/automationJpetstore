@@ -2,7 +2,6 @@ package org.eql;
 
 import static org.junit.Assert.*;
 
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -12,165 +11,81 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestSelenium_OK {
-	
-	public static int getRandomNumberInts(int min, int max){
 
-	    Random random = new Random();
-
-	    return random.ints(min,(max+1)).findFirst().getAsInt();
-
-	}
-	
-	int random_int = TestSelenium_OK.getRandomNumberInts(1, 55555);
-	String username = "test" + random_int;
-	
 	@Test
 	public void TestSeleniumJUnit () throws InterruptedException{
 
-			
-			
 		System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
-		WebDriver driver = new FirefoxDriver();
-		
-		//CONFIGURATION D'UN IMPLICIT WAIT
 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// instanciation de de WebDriver
+	WebDriver driver = new FirefoxDriver();
+	
+	//CONFIGURATION D'UN IMPLICIT WAIT
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-
-		//navigation
-		
-		driver.get("https://petstore.octoperf.com");
-		
-		driver.findElement(By.xpath("//a[.='Enter the Store']")).click();
-			
-		driver.findElement(By.xpath("//a[text()='Sign In']")).click();
-		
-		// Rempli les champs login password
-		WebElement champ_login = driver.findElement(By.name("username"));
-		champ_login.clear();
-		champ_login.sendKeys("ACID");
-		
-		WebElement champ_pwd = driver.findElement(By.name("password"));
-		champ_pwd.clear();
-		champ_pwd.sendKeys("ACID");
-		
-		//clic sur le bouton submit
-		driver.findElement(By.name("signon")).click();
-		
-		//verification du message de bienvenue
-
-		assertEquals(driver.findElement(By.id("WelcomeContent")).getText(),"Welcome ABC!");
-		
-		//Achat reptile
-		driver.findElement(By.xpath("//img[contains(@src,'reptiles_icon.gif')]")).click();
-		
-		driver.findElement(By.xpath("//td[text()='Iguana']/preceding-sibling::td")).click();
-		
-		driver.findElement(By.xpath("//a[text()='Add to Cart']")).click();
-		
-		//doubler la quantité du produit
-
-		driver.findElement(By.xpath("//input[@name='EST-13']")).clear();
-
-		driver.findElement(By.xpath("//input[@name='EST-13']")).sendKeys("2");
-
-		driver.findElement(By.xpath("//input[contains(@name,'update')]")).click();
-		
-		//retour main menu
-		
-		driver.findElement(By.xpath("//a[text()='Return to Main Menu']")).click();
-		
-		//changer parametre my account
-		driver.findElement(By.xpath("//a[text()='My Account']")).click();
-		
-		driver.findElement(By.xpath("//input[@name='account.listOption']")).click();
-		
-		driver.findElement(By.xpath("//input[@name='editAccount']")).click();
-		
-		//recherche
-		WebElement search = driver.findElement(By.xpath("//input[@name='keyword']"));
-		search.clear();
-		search.sendKeys("fish");
-		
-		driver.findElement(By.xpath("//input[@name='searchProducts']")).click();
-		
-		//verification recherche
-
-		assertEquals(driver.findElement(By.xpath("//td[3]")).getText(),"Goldfish");
-		
-		//Achat fish
-		driver.findElement(By.xpath("//td/a")).click();
-		
-		driver.findElement(By.xpath("//a[text()='Add to Cart']")).click();
-		
-		//Achat dogs
-		driver.findElement(By.xpath("//img[contains(@src,'sm_dogs.gif')]")).click();
-		
-		driver.findElement(By.xpath("//td[text()='Poodle']/preceding-sibling::td")).click();
-		
-		driver.findElement(By.xpath("//a[text()='Add to Cart']")).click();
-		
-		
-		
-		//Achat birds
-		driver.findElement(By.xpath("//img[contains(@src,'sm_birds.gif')]")).click();
-				
-		driver.findElement(By.xpath("//td[text()='Finch']/preceding-sibling::td")).click();
-				
-		driver.findElement(By.xpath("//a[text()='Add to Cart']")).click();
-		
-		
-		//shopping cart proceed
-		
-		driver.findElement(By.xpath("//a[text()='Proceed to Checkout']")).click();
-
-		driver.findElement(By.xpath("//input[@name='newOrder']")).click();
-		
-		driver.findElement(By.xpath("//a[text()='Confirm']")).click();
-		
-		driver.findElement(By.xpath("//a[text()='Return to Main Menu']")).click();
-		
-		//sign out
-		
-		driver.findElement(By.xpath("//a[text()='Sign Out']")).click();
-		
-		//new account
-		
-		driver.findElement(By.xpath("//a[text()='Sign In']")).click();
-		
-		driver.findElement(By.xpath("//a[text()='Register Now!']")).click();
-		
-		driver.findElement(By.xpath("//input[@name='username']")).sendKeys(username);
-		
-		driver.findElement(By.xpath("//input[@name='password']")).sendKeys("12345");
-		
-		driver.findElement(By.xpath("//input[@name='repeatedPassword']")).sendKeys("12345");
-		
-		driver.findElement(By.xpath("//input[@name='account.firstName']")).sendKeys("yes");
-		
-		driver.findElement(By.xpath("//input[@name='account.lastName']")).sendKeys("yes");
-
-		driver.findElement(By.xpath("//input[@name='account.email']")).sendKeys("yes");
-
-		driver.findElement(By.xpath("//input[@name='account.phone']")).sendKeys("yes");
-
-		driver.findElement(By.xpath("//input[@name='account.address1']")).sendKeys("yes");
-		
-		driver.findElement(By.xpath("//input[@name='account.city']")).sendKeys("yes");
-
-		driver.findElement(By.xpath("//input[@name='account.state']")).sendKeys("yes");
-
-		driver.findElement(By.xpath("//input[@name='account.zip']")).sendKeys("yes");
-
-		driver.findElement(By.xpath("//input[@name='account.country']")).sendKeys("yes");
-		
-		driver.findElement(By.xpath("//input[@name='newAccount']")).click();
-		
-		System.out.println("FINISH");
-		
-		driver.quit();
-		}
+	
+	//navigation
+	driver.get("https://petstore.octoperf.com/");
+	
+	driver.findElement(By.xpath("//a[.='Enter the Store']")).click();
+	
+	//clic sur le lien sign in
+	driver.findElement(By.xpath("//a[.='Sign In']")).click();
+	
+	// Rempli les champs login password
+	driver.findElement(By.xpath("//input[@name='username']")).clear();
+	driver.findElement(By.xpath("//input[@name='password']")).clear();
+	driver.findElement(By.xpath("//input[@name='username']")).sendKeys("j2ee");
+	driver.findElement(By.xpath("//input[@name='password']")).sendKeys("j2ee");
+	
+	//clic sur le bouton submit
+	driver.findElement(By.xpath("//input[@name='signon']")).click();
+	
+	//verification du message de bienvenue
+	assertEquals(driver.findElement(By.id("WelcomeContent")).getText(),"Welcome ABC!");
 	
 	
+	//clic sur le lien Fish 
+	driver.findElement(By.xpath("//div[@id='QuickLinks']/a[contains(@href,'Id=FISH')]")).click();
+	assertEquals(driver.findElement(By.xpath("//h2")).getText(),"Fish");
+	
+	//clic sur un produit
+	driver.findElement(By.xpath("//a[contains(@href,'Id=FI-SW-01')]")).click();
+	
+	//clic sur un item
+	driver.findElement(By.xpath("//a[contains(@href,'workingItemId=EST-1')]")).click();
+	assertEquals(driver.findElement(By.xpath("//h2")).getText(),"Shopping Cart");
+	
+	//doubler la quantité du produit
+	driver.findElement(By.xpath("//input[@name='EST-1']")).clear();
+	driver.findElement(By.xpath("//input[@name='EST-1']")).sendKeys("2");
+	driver.findElement(By.xpath("//input[contains(@name,'update')]")).click();
+	
+	//vérification du calcul du montant total
+	
+	//récupère le prix unitaire et total en String (écarte le $ de la sélection)
+	String prixUnit = driver.findElement(By.xpath("//form/table/tbody/tr[2]/td[6]")).getText().substring(1, 5);
+	String prixTotal = driver.findElement(By.xpath("//form/table/tbody/tr[2]/td[7]")).getText().substring(1, 5);
+	
+	//remplace la virgule par un point
+	prixUnit = prixUnit.substring(0,2) + "." +prixUnit.substring(3,4);
+	prixTotal = prixTotal.substring(0,2) + "." +prixTotal.substring(3,4);
+	
+	//transforme le string en un double
+	double Unit = Double.parseDouble(prixUnit);
+	double Total = Double.parseDouble(prixTotal);
+	
+	try{
+		assertTrue(Total == Unit*2);
+	}
+	catch(AssertionError ae) {
+		System.out.println("ERREUR : le prix du panier n'a pas été multiplié par deux");
+	}
+	System.out.println("SUCCES : le prix du panier a été multiplié par deux");
+	
+	
+	driver.quit();
+	
+	}
 	
 }
