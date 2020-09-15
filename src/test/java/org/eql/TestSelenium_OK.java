@@ -19,7 +19,6 @@ public class TestSelenium_OK {
 	public void TestSeleniumJUnit () throws InterruptedException{
 
 			
-			
 		System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		
