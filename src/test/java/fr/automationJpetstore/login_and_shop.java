@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class login_and_shop {
 	
@@ -37,8 +38,8 @@ public class login_and_shop {
 	@Test
 	public void test() {
 		
-	System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-	driver = new ChromeDriver();
+	System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver.exe");
+	driver = new FirefoxDriver();
 	
 	//CONFIGURATION D'UN IMPLICIT WAIT
 
@@ -118,14 +119,7 @@ public class login_and_shop {
 	
 	driver.findElement(By.xpath("//a[text()='Add to Cart']")).click();
 	
-	//Achat cats
-	driver.findElement(By.id("LogoContent")).click();
 	
-	driver.findElement(By.xpath("//area[contains(@href,'CATS')]")).click();
-		
-	driver.findElement(By.xpath("//td[text()='Persian']/preceding-sibling::td")).click();
-		
-	driver.findElement(By.xpath("//a[text()='Add to Cart']")).click();
 	
 	//Achat birds
 	driver.findElement(By.xpath("//img[contains(@src,'sm_birds.gif')]")).click();
@@ -181,5 +175,6 @@ public class login_and_shop {
 	
 	driver.findElement(By.xpath("//input[@name='newAccount']")).click();
 	
+	System.out.println("FINISH");
 	}
 }
